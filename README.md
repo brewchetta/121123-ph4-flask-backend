@@ -1,13 +1,11 @@
-# Intro to Flask
+# SQLAlchemy Recap
 
 ## Learning Goals
 
-- Request / Response cycle
+- Initializing a database
 
-- Model View Controller architecture
+- Creating models
 
-- Serving static information with GET routes
+- Migrating a database
 
-- `make_response` and `jsonify`
-
-- Route parameters
+- CRUD using SQLAlchemy methods
