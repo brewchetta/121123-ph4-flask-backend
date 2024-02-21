@@ -19,7 +19,7 @@ db.init_app(app)
 
 @app.get('/')
 def index():
-    return make_response( jsonify("Hello world") )
+    return make_response( jsonify( "--Welcome to my raccoon flask app--" ) )
 
 @app.post('/')
 def post_index():
@@ -27,21 +27,32 @@ def post_index():
     data["location"] = "five guys"
     return make_response( jsonify( data ), 201 )
 
-raccoons = [ {}, { "id": 1, "name": "Bob" }, { "id": 2, "name": "Jim" }, { "id": 3, "name": "Frank" } ]
+# RACCOONS ROUTES #
 
+# we'll delete this list soon and replace it
+raccoons = [ 
+    {}, 
+    { "id": 1, "name": "Bob" }, 
+    { "id": 2, "name": "Jim" }, 
+    { "id": 3, "name": "Frank" } 
+]
+
+# GET ALL RACCOONS - INDEX ROUTE
 @app.get('/raccoons')
 def get_raccoons():
     return make_response( jsonify( raccoons ), 200 )
 
+# GET RACCOON BY ID - SHOW ROUTE
 @app.get('/raccoons/<int:id>')
 def get_raccoon_by_id(id):
     raccoon = raccoons[id]
     return make_response( jsonify( raccoon ), 200 )
 
-@app.delete('/raccoons/<int:id>')
-def delete_raccoon_by_id(id):
-    raccoons.pop(id)
-    return {}, 204
+# POST RACCOON - CREATE ROUTE
+
+# PATCH RACCOON BY ID - UPDATE ROUTE
+
+# DELETE RACCOON BY ID - DELETE ROUTE
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
