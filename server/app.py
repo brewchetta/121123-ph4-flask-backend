@@ -3,10 +3,13 @@
 from flask import Flask, request, make_response, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_cors import CORS
 
-from models import db # import your models here!
+from models import db, Raccoon
 
 app = Flask(__name__)
+# TODO: For tomorrow import and add in cors here!
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
@@ -21,32 +24,17 @@ db.init_app(app)
 def index():
     return make_response( jsonify( "--Welcome to my raccoon flask app--" ) )
 
-@app.post('/')
-def post_index():
-    data = request.json
-    data["location"] = "five guys"
-    return make_response( jsonify( data ), 201 )
-
 # RACCOONS ROUTES #
-
-# we'll delete this list soon and replace it
-raccoons = [ 
-    {}, 
-    { "id": 1, "name": "Bob" }, 
-    { "id": 2, "name": "Jim" }, 
-    { "id": 3, "name": "Frank" } 
-]
 
 # GET ALL RACCOONS - INDEX ROUTE
 @app.get('/raccoons')
 def get_raccoons():
-    return make_response( jsonify( raccoons ), 200 )
+    pass
 
 # GET RACCOON BY ID - SHOW ROUTE
 @app.get('/raccoons/<int:id>')
 def get_raccoon_by_id(id):
-    raccoon = raccoons[id]
-    return make_response( jsonify( raccoon ), 200 )
+    pass
 
 # POST RACCOON - CREATE ROUTE
 

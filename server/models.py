@@ -9,4 +9,21 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
-# write your models here!
+class Raccoon(db.Model):
+    
+    __tablename__ = "raccoons_table"
+
+    id = db.Column( db.Integer, primary_key=True )
+    name = db.Column( db.String, unique=True, nullable=False )
+    location = db.Column( db.String )
+    has_rabies = db.Column( db.Boolean, default=False )
+    img_url = db.Column( db.String )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "location": self.location,
+            "has_rabies": self.has_rabies,
+            "img_url": self.img_url
+        }
