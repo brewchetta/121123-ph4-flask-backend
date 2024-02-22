@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
         raccoons = []
 
-        for _ in range(10):
+        for _ in range(1000):
             r = Raccoon(name=faker.name(), location=faker.country())
             raccoons.append(r)
 
